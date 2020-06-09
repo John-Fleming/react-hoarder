@@ -1,6 +1,7 @@
 import React from 'react';
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import PropTypes from 'prop-types';
 
 import {
   Collapse,
@@ -15,6 +16,10 @@ import {
 import './MyNavbar.scss';
 
 class MyNavbar extends React.Component {
+  static propTypes = {
+    authed: PropTypes.bool.isRequired,
+  }
+
   state = {
     isOpen: false,
   }
@@ -32,22 +37,26 @@ class MyNavbar extends React.Component {
     const { isOpen } = this.state;
 
     const buildNavbar = () => {
-      return (
-        <Nav className="ml-auto" navbar>
-          <NavItem>
-            <NavLink href="/components/">Home</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="/components/">My Stuff</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="/components/">New</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="/components/">Logout</NavLink>
-          </NavItem>
-        </Nav>
-      );
+      const { authed } = this.props;
+      if (authed) {
+        return (
+          <Nav className="ml-auto" navbar>
+            <NavItem>
+              <NavLink href="/components/">Home</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/components/">My Stuff</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/components/">New</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/components/" onClick={this.logMeOut}>Logout</NavLink>
+            </NavItem>
+          </Nav>
+        );
+      }
+      return <Nav className="ml-auto" navbar></Nav>;
     };
 
     return (
@@ -59,7 +68,6 @@ class MyNavbar extends React.Component {
             {buildNavbar()}
           </Collapse>
         </Navbar>
-        {/* <button className="btn btn-outline-dark" onClick={this.logMeOut}>Logout</button> */}
       </div>
     );
   }
