@@ -3,6 +3,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 
 import Auth from '../components/pages/Auth/Auth';
+import Home from '../components/pages/Home/Home';
 import MyNavbar from '../components/shared/MyNavbar/MyNavbar';
 
 import fbConnection from '../helpers/data/connection';
@@ -35,7 +36,7 @@ class App extends React.Component {
       <div className="App">
         <MyNavbar authed={authed}></MyNavbar>
         { authed
-          ? ''
+          ? <Home authed={authed}/>
           : <Auth authed={authed}></Auth>
         }
       </div>
