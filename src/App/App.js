@@ -66,10 +66,10 @@ class App extends React.Component {
               <div className="row">
                 <Switch>
                   <PrivateRoute path='/home' component={Home} authed={authed}/>
+                  <PrivateRoute path='/stuff/:itemId' component={SingleStuff} authed={authed}/>
                   <PrivateRoute path='/stuff' component={MyStuff} authed={authed}/>
                   <PrivateRoute path='/new' component={NewStuff} authed={authed}/>
-                  <PrivateRoute path='/edit/12345' component={EditStuff} authed={authed}/>
-                  <PrivateRoute path='/stuff/12345' component={SingleStuff} authed={authed}/>
+                  <PrivateRoute path='/edit/:itemId' component={EditStuff} authed={authed}/>
                   <PublicRoute path='/auth' component={Auth} authed={authed}/>
                   <Redirect from="*" to="/home" />
                 </Switch>
