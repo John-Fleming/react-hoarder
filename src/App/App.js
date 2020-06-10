@@ -10,10 +10,12 @@ import {
 } from 'react-router-dom';
 
 import Auth from '../components/pages/Auth/Auth';
+import EditStuff from '../components/pages/EditStuff/EditStuff';
 import Home from '../components/pages/Home/Home';
 import MyNavbar from '../components/shared/MyNavbar/MyNavbar';
 import MyStuff from '../components/pages/MyStuff/MyStuff';
 import NewStuff from '../components/pages/NewStuff/NewStuff';
+import SingleStuff from '../components/pages/SingleStuff/SingleStuff';
 
 import fbConnection from '../helpers/data/connection';
 
@@ -66,6 +68,8 @@ class App extends React.Component {
                   <PrivateRoute path='/home' component={Home} authed={authed}/>
                   <PrivateRoute path='/stuff' component={MyStuff} authed={authed}/>
                   <PrivateRoute path='/new' component={NewStuff} authed={authed}/>
+                  <PrivateRoute path='/edit/12345' component={EditStuff} authed={authed}/>
+                  <PrivateRoute path='/stuff/12345' component={SingleStuff} authed={authed}/>
                   <PublicRoute path='/auth' component={Auth} authed={authed}/>
                   <Redirect from="*" to="/home" />
                 </Switch>
