@@ -1,14 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import itemShape from '../../../helpers/propz/itemShape';
 
 class StuffCard extends React.Component {
   static propTypes = {
     item: itemShape.itemShape,
+    removeItem: PropTypes.func.isRequired,
   }
 
   render() {
-    const { item } = this.props;
+    const { item, removeItem } = this.props;
     const singleLink = `/stuff/${item.id}`;
     const editLink = `/edit/${item.id}`;
 
@@ -17,6 +19,7 @@ class StuffCard extends React.Component {
         <h5>{item.itemName}</h5>
         <Link className="btn btn-outline-dark mx-1" to={editLink}>Edit</Link>
         <Link className="btn btn-outline-dark mx-1" to={singleLink}>Single</Link>
+        <button className="btn btn-outline-dark mx-1" onClick={() => removeItem(item.id)}>Delete</button>
       </div>
     );
   }
