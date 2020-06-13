@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import stuffData from '../../../helpers/data/stuffData';
 
 class SingleStuff extends React.Component {
@@ -26,6 +27,8 @@ class SingleStuff extends React.Component {
 
   render() {
     const { item } = this.state;
+    const { itemId } = this.props.match.params;
+    const editLink = `/edit/${itemId}`;
     return (
       <div className="SingleStuff card mt-3 col-4 mx-auto">
         <img className="card-img-top" src={item.itemImage} alt="my item"/>
@@ -33,6 +36,7 @@ class SingleStuff extends React.Component {
           <h5 className="card-title">{item.itemName}</h5>
           <p className="card-text">{item.itemDescription}</p>
           <button className="btn btn-outline-dark mx-1" onClick={this.deleteItem}>Delete</button>
+          <Link className="btn btn-outline-dark mx-1" to={editLink}>Edit</Link>
         </div>
       </div>
     );
